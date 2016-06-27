@@ -1,10 +1,36 @@
 angular.module('app.services', [])
 
-.factory('BlankFactory', [function(){
+    .factory('rateService', ['$http', function ($http) {
+        
+ var rates;
+        return {
+            
+            getRates: function (callback) {
+               
+                $http.get('http://localhost:8100/api?ondate=06/27/2016',{
+                    transformResponse:function (response) {
+                        var x2js = new X2JS();
+                        rates  = x2js.xml_str2json(response);
+                        console.log(rates);
+                        return rates.DailyExRates.Currency;
+                    }
+                })
+                .success(function(response,status){
+                    // console.log(response);
+                    callback(response);
+                })
+                
+            }
+            // ,
+            // getRate: function (index) {
+            //     return rates[index];
+            // }
+            
+        }
 
-}])
+    }])
 
-.service('BlankService', [function(){
+    .service('BlankService', [function () {
 
-}]);
+    }]);
 

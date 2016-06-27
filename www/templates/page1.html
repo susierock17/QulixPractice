@@ -1,98 +1,29 @@
-
 <ion-view title="Курсы валют" id="page1" class=" ">
     <ion-content padding="true" class="has-header">
         <div class="container">
-            <div class="currencies" >
-               <a class="item item-avatar" href="#">
-                <img src="img/32/United-States.png">
-                USD 
-                <p>(Доллар США)</p>
-            </a>
-            <a class="item item-avatar" href="#">
-                <img src="img/32/European-Union.png" >
-                EUR 
-                <p>(Евро)</p>
-            </a> 
+            <div class="column-left">
+                <div class="row-header item-div">
+                    <p>Валюта</p>
+                </div>
+                <div class="row" ng-repeat="element in currencies">
+                    <div class="currency">
+                        <a class="item item-avatar" href="#">
+                            <img src="{{element.image}}">
+                            <currency>{{element.title_eng}}</currency>
+                            <p>{{element.title_rus}}</p>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="sale">Haha2</div>
-            <div class="purchase">Hahah3</div>
-        </div>
-        <!--<div id="page1-list2" class="col">
-            <div ng-repeat="element in currencies">
-                <a class="item item-avatar" href="#">
-                    <img ng-src="{{item.url}}"/>
-                    {{item.nameEng}}
-                    <p>({{item.nameRus}})</p>
-                </a>
+            <div class="column-right">
+                <div class="row-header item-div">
+                    <p>Курс</p>
+                </div>
+                <div class="row" ng-repeat="rate in rateData track by myTrackingFunction(rate)">
+                    <a>{{rate.Rate}}</a>
+                </div>
             </div>
-            <a class="item item-avatar" href="#">
-                <img src="img/32/United-States.png">
-                USD 
-                <p>(Доллар США)</p>
-            </a>
-            <a class="item item-avatar" href="#">
-                <img src="img/32/European-Union.png" >
-                EUR 
-                <p>(Евро)</p>
-            </a>
-            <a class="item item-avatar" href="#">
-                <img src="img/32/Russia.png">
-                RUB 
-                <p>(Российский рубль)</p>
-            </a>
-            <a class="item item-avatar" href="#">
-                <img src="img/32/United-Kingdom.png">
-                GBP 
-                <p>(Фунт стерлингов)</p>
-            </a>
-            <a class="item item-avatar" href="#">
-                <img src="img/32/Switzerland.png">
-                CFH 
-                <p class="cur_name">(Швейцарский франк)</p>
-            </a>
-            <a class="item item-avatar" href="#">
-                <img src="img/32/Canada.png">
-                CAD 
-                <p class="cur_name">(Канадский доллар)</p>
-            </a>
-            <a class="item item-avatar" href="#">
-                <img src="img/32/Australia.png">
-                AUD 
-                <p>(Австралийский доллар)</p>
-            </a>
-            <a class="item item-avatar" href="#">
-                <img src="img/32/Czech-Republic.png">
-                CZK 
-                <p>(Чешский крон)</p>
-            </a>
-            <a class="item item-avatar" href="#">
-                <img src="img/32/Poland.png">
-                PLN 
-                <p>(Злотый)</p>
-            </a>
-            <a class="item item-avatar" href="#">
-                <img src="img/32/Bulgaria.png">
-                BGN 
-                <p>(Болгарский лев)</p>
-            </a>
-            <a class="item item-avatar" href="#">
-                <img src="img/32/Turkey.png">
-                TRY 
-                <p>(Турецкая лира)</p>
-            </a>
-            <a class="item item-avatar" href="#">
-                <img src="img/32/China.png">
-                CNY 
-                <p>(Китайский юань)</p>
-            </a>
-            <a class="item item-avatar" href="#">
-                <img src="img/32/Ukraine.png">
-                UAH 
-                <p>(Гривна)</p>
-            </a>
         </div>
-        <div class="col">col2</div>
-        <div class="col">col3</div>
-        </div>-->
+
     </ion-content>
 </ion-view>

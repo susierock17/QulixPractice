@@ -1,6 +1,12 @@
 {
   "name": "Rate",
   "app_id": "",
+  "proxies": [
+    {
+      "path": "/api",
+      "proxyUrl": "http://www.nbrb.by/Services/XmlExRates.aspx"
+    }
+  ],
   "gulpStartupTasks": [
     "sass",
     "watch"
