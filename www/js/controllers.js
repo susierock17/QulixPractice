@@ -111,10 +111,16 @@ angular.module('app.controllers', [])
     .controller('page4Ctrl', function ($scope, $stateParams, rateService) {
         
         $scope.currencyConvert = function(){
-            $scope.list_first = document.getElementById('currency-first');
+            var list_first = document.getElementById('currency-first');
             console.log(list_first);
-            var option_first = list_first.options[list_first.selectIndex].text;
-            if(list_first.selectIndex!= -1)
+            var option_first = list_first.options[list_first.selectedIndex].text;
+            console.log(option_first);
+            var input = document.getElementById('input-value').value;
+            console.log(input);
+            var list_second = document.getElementById('currency-second');
+            var option_second = list_second.options[list_second.selectedIndex].text;
+            console.log(option_second);
+            // if(list_first.selectIndex!= -1)
             console.log(option_first);
         }
     })

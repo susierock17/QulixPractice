@@ -1,7 +1,7 @@
 <ion-view title="Конвертер" id="page4" class=" ">
     <ion-content padding="true" class="has-header">
         <form id="page4-form10" class="list ">
-            <label class="item item-select " id="page4-select3" onclick="currencyConvert">
+            <label class="item item-select " id="page4-select3"  ng-click = 'currencyConvert()'>
                 <span class="input-label">Валюта</span>
                 <select id="currency-first">
                     <option>USD</option>
@@ -11,7 +11,7 @@
                 </select>
             </label>
             <label class="item item-input item-stacked-label " id="page4-input3">
-                <input type="number" maxlength="5" placeholder="Введите количество" min="0">
+                <input id = "input-value" type="number" maxlength="5" placeholder="Введите количество" min="0">
             </label>
             <label class="item item-select " id="page4-select5">
                 <span class="input-label">Валюта</span>
@@ -23,7 +23,7 @@
                 </select>
             </label>
             <label class="item item-input" id="page4-input4">
-                <p>{{result}}</p>
+                <p>Результат<output name="output"></output></p>
             </label>
         </form>
     </ion-content>
