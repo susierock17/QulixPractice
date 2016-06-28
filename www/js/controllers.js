@@ -102,7 +102,16 @@ angular.module('app.controllers', [])
 
     .controller('page2Ctrl', function ($scope) {
         $scope.getStatistics = function () {
-            var currency_array = document.getElementsByClassName("list")
+            var rates = document.getElementsByClassName('list');
+            console.log(document.getElementsByClassName('list'));
+            var rate_value;
+            for (var i = 0; i < rates.length; i++) {
+                if (rates[i].checked) {
+                    rate_value = rates[i].text;
+                }
+            }
+            console.log(rate_value);
+            return rate_value;
         }
     })
 
@@ -111,36 +120,83 @@ angular.module('app.controllers', [])
     })
 
     .controller('page4Ctrl', function ($scope, $stateParams, rateService) {
-        var first_rate, second_rate;
-         
         loadRates = function (response) {
             $scope.rateData = response;
         }
         rateService.getRates(loadRates);
-         function getRate(some_option) {
-                for (var i = 0; i < $scope.rateData.length; i++) {
-                    if ($scope.rateData[i]['_CharCode'] == some_option) {
-                        return $scope.rateData[i].rate;
-                    }
+
+        $scope.data = {
+            firstSelectChoice: null,
+            secondSelectChoice: null,
+            amount: 0,
+            currencies: [
+                {
+                    "code": "USD",
+                },
+                {
+                    "code": "EUR",
+                },
+                {
+                    "code": "RUB",
+                },
+                {
+                    "code": "BYR",
+                },
+                {
+                    "code": "AUD",
+                },
+                {
+                    "code": "BGN",
+                },
+                {
+                    "code": "UAH",
+                },
+                {
+                    "code": "PLN",
+                },
+                {
+                    "code": "CAD",
+                },
+                {
+                    "code": "CNY",
+                },
+                {
+                    "code": "TRY",
+                },
+                {
+                    "code": "GBP",
+                },
+                {
+                    "code": "CZK",
+                },
+                {
+                    "code": "CFH",
+                }
+            ]
+        }
+        getRate = function (some_option) {
+            if (!$scope.rateData)
+                return;
+            for (var i = 0; i < $scope.rateData.length; i++) {
+                if (some_option == 'BYR')
+                    return 1;
+                if ($scope.rateData[i]['CharCode'] == some_option) {
+                    return $scope.rateData[i].Rate;
                 }
             }
-        $scope.currencyConvert = function () {
-            var list_first = document.getElementById('currency-first');
-            console.log(list_first);
-            var option_first = list_first.options[list_first.selectedIndex].text;
-            console.log(option_first);
-            var input = document.getElementById('input-value').value;
-            console.log(input);
-            var list_second = document.getElementById('currency-second');
-            var option_second = list_second.options[list_second.selectedIndex].text;
-            console.log(option_second);
-            var rate_one = getRate(option_first);
-            var rate_two = getRate(option_second);
-            $scope.result = (rate_one*input)/rate_two;
-            console.log($scope.result);
-
         }
-        
+
+        $scope.$watch('data.amount', function (newValue) {
+            $scope.result = (getRate($scope.data.firstSelectChoice) * newValue) / getRate($scope.data.secondSelectChoice);
+        });
+
+        $scope.$watch('data.firstSelectChoice', function (newValue) {
+            $scope.result = (getRate(newValue) * $scope.data.amount) / getRate($scope.data.secondSelectChoice);
+        });
+
+        $scope.$watch('data.secondSelectChoice', function (newValue) {
+            $scope.result = (getRate($scope.data.firstSelectChoice) * $scope.data.amount) / getRate(newValue);
+        });
     })
 
     .controller('page6Ctrl', function ($scope) {
