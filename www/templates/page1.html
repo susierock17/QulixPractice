@@ -5,7 +5,7 @@
                 <div class="row-header item-div">
                     <p>Валюта</p>
                 </div>
-                <div class="row" ng-repeat="element in currencies">
+                <div class="row" ng-repeat="element in currencies" >
                     <div class="currency">
                         <a class="item item-avatar" href="#">
                             <img src="{{element.image}}">
@@ -19,8 +19,8 @@
                 <div class="row-header item-div">
                     <p>Курс</p>
                 </div>
-                <div class="row" ng-repeat="rate in rateData track by myTrackingFunction(rate)">
-                    <a>{{rate.Rate}}</a>
+                <div class="row" ng-repeat="rate in rateData | filter : currencyFilterFunction">
+                  <p class="item-currency">{{rate.Rate}}</p>
                 </div>
             </div>
         </div>

@@ -7,7 +7,7 @@ angular.module('app.services', [])
             
             getRates: function (callback) {
                
-                $http.get('http://localhost:8100/api?ondate=06/27/2016',{
+                $http.get('http://localhost:8100/api?ondate=',{
                     transformResponse:function (response) {
                         var x2js = new X2JS();
                         rates  = x2js.xml_str2json(response);
