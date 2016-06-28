@@ -1,7 +1,7 @@
 <ion-view title="Конвертер" id="page4" class=" ">
     <ion-content padding="true" class="has-header">
         <form id="page4-form10" class="list ">
-            <label class="item item-select " id="page4-select3"  ng-click = 'currencyConvert()'>
+            <label class="item item-select " id="page4-select3"  >
                 <span class="input-label">Валюта</span>
                 <select id="currency-first">
                     <option>USD</option>
@@ -22,8 +22,8 @@
                     <option>BYR</option>
                 </select>
             </label>
-            <label class="item item-input" id="page4-input4">
-                <p>Результат<output name="output"></output></p>
+            <label class="item item-input" id="page4-input4" ng-click = 'currencyConvert()'>
+                <p>Результат<output name="output">{{result}}</output></p>
             </label>
         </form>
     </ion-content>

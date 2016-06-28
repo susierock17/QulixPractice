@@ -1,15 +1,15 @@
 <ion-view title="Графики" id="page2" class=" ">
     <ion-content padding="true" class="has-header">
-        <form id="page2-form3" class="list ">
+        <form id="page2-form3" class="list">
             <p class="text-explain ">Для построения графика выберите одну из валют</p>
-            <ion-radio  class=" ">EUR (Евро)</ion-radio>
-            <ion-radio  class=" ">USD (Доллар США)</ion-radio>
-            <ion-radio  class=" ">RUB (Российский рубль)</ion-radio>
+            <ion-radio value = "EUR" class=" ">EUR (Евро)</ion-radio>
+            <ion-radio value = "USD" class=" ">USD (Доллар США)</ion-radio>
+            <ion-radio value = "RUB" class=" ">RUB (Российский рубль)</ion-radio>
         </form>
         <div id="page2-button-bar1" class=" button-bar ">
-            <button id="button-week" class=" button button-stable  button-block button-outline ">Неделя</button>
-            <button id="button-month" class=" button button-stable  button-block button-outline ">Месяц</button>
-            <button id="button-year" class=" button button-stable  button-block button-outline ">Год</button>
+            <button id="button-week" class=" button button-stable  button-block button-outline " ng-click = "getWeekStatistics">Неделя</button>
+            <button id="button-month" class=" button button-stable  button-block button-outline " ng-click = "getMonthStatistics">Месяц</button>
+            <!--<button id="button-year" class=" button button-stable  button-block button-outline " ng-click = "getYearCurrency">Год</button>-->
         </div>
     </ion-content>
 </ion-view>

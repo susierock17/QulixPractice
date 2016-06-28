@@ -64,7 +64,7 @@ angular.module('app.controllers', [])
                 "title_rus": "(Российский рубль)",
                 "image": "img/32/Russia.png"
             },
-             {
+            {
                 "id": 256,
                 "title_eng": "TRY",
                 "title_rus": "(Турецкая лира)",
@@ -76,7 +76,7 @@ angular.module('app.controllers', [])
                 "title_rus": "(Фунт стерлингов)",
                 "image": "img/32/United-Kingdom.png"
             },
-             {
+            {
                 "id": 171,
                 "title_eng": "CZK",
                 "title_rus": "(Чешская крона)",
@@ -92,8 +92,8 @@ angular.module('app.controllers', [])
         ]
 
         $scope.currencyFilterFunction = function (rate) {
-            for(var i = 0;i<$scope.currencies.length;i++){
-                if($scope.currencies[i].id == rate._Id)
+            for (var i = 0; i < $scope.currencies.length; i++) {
+                if ($scope.currencies[i].id == rate._Id)
                     return true;
             }
             return false;
@@ -101,7 +101,9 @@ angular.module('app.controllers', [])
     })
 
     .controller('page2Ctrl', function ($scope) {
-
+        $scope.getStatistics = function () {
+            var currency_array = document.getElementsByClassName("list")
+        }
     })
 
     .controller('page3Ctrl', function ($scope) {
@@ -109,8 +111,20 @@ angular.module('app.controllers', [])
     })
 
     .controller('page4Ctrl', function ($scope, $stateParams, rateService) {
-        
-        $scope.currencyConvert = function(){
+        var first_rate, second_rate;
+         
+        loadRates = function (response) {
+            $scope.rateData = response;
+        }
+        rateService.getRates(loadRates);
+         function getRate(some_option) {
+                for (var i = 0; i < $scope.rateData.length; i++) {
+                    if ($scope.rateData[i]['_CharCode'] == some_option) {
+                        return $scope.rateData[i].rate;
+                    }
+                }
+            }
+        $scope.currencyConvert = function () {
             var list_first = document.getElementById('currency-first');
             console.log(list_first);
             var option_first = list_first.options[list_first.selectedIndex].text;
@@ -120,9 +134,13 @@ angular.module('app.controllers', [])
             var list_second = document.getElementById('currency-second');
             var option_second = list_second.options[list_second.selectedIndex].text;
             console.log(option_second);
-            // if(list_first.selectIndex!= -1)
-            console.log(option_first);
+            var rate_one = getRate(option_first);
+            var rate_two = getRate(option_second);
+            $scope.result = (rate_one*input)/rate_two;
+            console.log($scope.result);
+
         }
+        
     })
 
     .controller('page6Ctrl', function ($scope) {
