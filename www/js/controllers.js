@@ -101,18 +101,23 @@ angular.module('app.controllers', [])
     })
 
     .controller('page2Ctrl', function ($scope) {
-        $scope.getStatistics = function () {
-            var rates = document.getElementsByClassName('list');
-            console.log(document.getElementsByClassName('list'));
-            var rate_value;
-            for (var i = 0; i < rates.length; i++) {
-                if (rates[i].checked) {
-                    rate_value = rates[i].text;
+        $scope.data = {
+            choice : null,
+            currencies: [
+                {
+                    "code": "USD",
+                },
+                {
+                    "code": "EUR",
+                },
+                {
+                    "code": "RUB",
                 }
-            }
-            console.log(rate_value);
-            return rate_value;
+            ]
         }
+        $scope.$watch ('data.choice',function(newValue){
+            console.log(newValue);
+        })
     })
 
     .controller('page3Ctrl', function ($scope) {

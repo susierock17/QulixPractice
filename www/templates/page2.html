@@ -2,9 +2,7 @@
     <ion-content padding="true" class="has-header">
         <form id="page2-form3" class="list">
             <p class="text-explain ">Для построения графика выберите одну из валют</p>
-            <ion-radio value="EUR" class=" " ng-click="getStatisctics()">EUR (Евро)</ion-radio>
-            <ion-radio value="USD" class=" ">USD (Доллар США)</ion-radio>
-            <ion-radio value="RUB" class=" ">RUB (Российский рубль)</ion-radio>
+            <ion-radio ng-repeat="element in data.currencies" ng-model="data.choice" ng-value="{{element.code}}">{{element.code}}</ion-radio>
         </form>
         <div id="page2-button-bar1" class=" button-bar ">
             <!--<input type = "datetime-local">-->
