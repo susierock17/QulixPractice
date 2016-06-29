@@ -1,15 +1,20 @@
 <ion-view title="Графики" id="page2" class=" ">
     <ion-content padding="true" class="has-header">
         <form id="page2-form3" class="list">
-            <p class="text-explain ">Для построения графика выберите одну из валют</p>
-            <ion-radio ng-repeat="element in data.currencies" ng-model="data.choice" ng-value="{{element.code}}">{{element.code}}</ion-radio>
+            <p class="text-explain ">Выберите валюту и временной период</p>
+            <ion-radio ng-repeat="element in data.currencies" ng-model="data.choice" ng-value="element.id">{{element.code}}</ion-radio>
         </form>
         <div id="page2-button-bar1" class=" button-bar ">
-            <!--<input type = "datetime-local">-->
-            <!--<button id="button-week" class=" button button-stable  button-block button-outline " ng-click = "getWeekStatistics">Неделя</button>
-            <button id="button-month" class=" button button-stable  button-block button-outline " ng-click = "getMonthStatistics">Месяц</button>-->
-            <!--<button id="button-year" class=" button button-stable  button-block button-outline " ng-click = "getYearCurrency">Год</button>-->
-            
+            <label class="item item-input" style="padding-left: 5px;">
+                <span class = "input-label" style="width:20%;padding-right: 5px;">С:</span>
+                <input type = "date" style="padding-right: 10px;" min="{{minDate | date:'yyyy-MM-dd'}}" max="{{currentDate | date:'yyyy-MM-dd'}}" ng-model = "data.inputFirst" required>
+            </label>
+            <label class="item item-input" style="padding-left: 5px;">
+                <span class = "input-label" style="width:20%;padding-right: 5px;">По:</span>
+                <input type = "date" style="padding-right: 10px;" min = "{{data.inputFirst | date:'yyyy-MM-dd'}}" max="{{currentDate | date:'yyyy-MM-dd'}}" ng-model = "data.inputSecond">
+            </label>
+            <button  class=" button button-stable  button-block button-outline " ng-click = "getHistory">Обновить</button>
+            <output class="result">{{rateHistory}}</output>
         </div>
     </ion-content>
 </ion-view>

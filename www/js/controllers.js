@@ -100,17 +100,25 @@ angular.module('app.controllers', [])
         }
     })
 
-    .controller('page2Ctrl', function ($scope) {
+    .controller('page2Ctrl', function ($scope,$stateParams, rateService) {
+        $scope.currentDate = new Date();
+        $scope.minDate = new Date('2011-03-01');
+
         $scope.data = {
             choice : null,
+            inputFirst: null,
+            inputSecond: null,
             currencies: [
                 {
+                    "id": 145,
                     "code": "USD",
                 },
                 {
+                    "id": 19,
                     "code": "EUR",
                 },
                 {
+                    "id":190,
                     "code": "RUB",
                 }
             ]
@@ -118,6 +126,21 @@ angular.module('app.controllers', [])
         $scope.$watch ('data.choice',function(newValue){
             console.log(newValue);
         })
+
+        $scope.$watch ('data.inputFirst',function(newValue){
+            console.log(newValue);
+        })
+
+        $scope.$watch ('data.inputSecond',function(newValue){
+            console.log(newValue);
+        })
+
+        loadRates = function (response) {
+            $scope.rateHistory = response;
+        }
+
+        rateService.getRatesOnPeriod(loadRates,$scope.data.choice,$scope.data.inputFirst,$scope.data.inputSecond);
+
     })
 
     .controller('page3Ctrl', function ($scope) {
