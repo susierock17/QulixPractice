@@ -139,8 +139,13 @@ angular.module('app.controllers', [])
             $scope.rateHistory = response;
         }
 
-        rateService.getRatesOnPeriod(loadRates,$scope.data.choice,$scope.data.inputFirst,$scope.data.inputSecond);
-
+        $scope.getRatesOnPeriod = function(){
+            var startDate = $scope.data.inputFirst.getDate() + '/' + ($scope.data.inputFirst.getMonth()+1) + '/' + $scope.data.inputFirst.getFullYear();
+            console.log(startDate);
+            var toDate = $scope.data.inputSecond.getDate() + '/' + ($scope.data.inputSecond.getMonth()+1) + '/' + $scope.data.inputSecond.getFullYear();
+            console.log(toDate);
+            rateService.getRatesOnPeriod(loadRates,$scope.data.choice,startDate,toDate);
+        }
     })
 
     .controller('page3Ctrl', function ($scope) {

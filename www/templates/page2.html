@@ -13,8 +13,8 @@
                 <span class = "input-label" style="width:20%;padding-right: 5px;">По:</span>
                 <input type = "date" style="padding-right: 10px;" min = "{{data.inputFirst | date:'yyyy-MM-dd'}}" max="{{currentDate | date:'yyyy-MM-dd'}}" ng-model = "data.inputSecond">
             </label>
-            <button  class=" button button-stable  button-block button-outline " ng-click = "getHistory">Обновить</button>
-            <output class="result">{{rateHistory}}</output>
         </div>
+        <button id="button-refresh" class=" button button-stable  button-block button-outline " ng-click = "getRatesOnPeriod()">Обновить</button>
+        <output class="result"></output>
     </ion-content>
 </ion-view>
