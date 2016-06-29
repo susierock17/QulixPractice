@@ -2,7 +2,7 @@
     <ion-content padding="true" class="has-header">
         <form id="page2-form3" class="list">
             <p class="text-explain ">Выберите валюту и временной период</p>
-            <ion-radio ng-repeat="element in data.currencies" ng-model="data.choice" ng-value="element.id">{{element.code}}</ion-radio>
+            <ion-radio style="color: #666;" ng-repeat="element in data.currencies" ng-model="data.choice" ng-value="element.id">{{element.code}}</ion-radio>
         </form>
         <div id="page2-button-bar1" class=" button-bar ">
             <label class="item item-input" style="padding-left: 5px;">
@@ -14,7 +14,13 @@
                 <input type = "date" style="padding-right: 10px;" min = "{{data.inputFirst | date:'yyyy-MM-dd'}}" max="{{currentDate | date:'yyyy-MM-dd'}}" ng-model = "data.inputSecond">
             </label>
         </div>
-        <button id="button-refresh" class=" button button-stable  button-block button-outline " ng-click = "getRatesOnPeriod()">Обновить</button>
-        <output class="result"></output>
+        <button id="button-refresh" style="color: #666;" class=" button button-stable  button-block button-outline " ng-click="getRatesOnPeriod()" ng-disabled = "data.inputFirst > data.inputSecond">Обновить</button>
+        <ul class="list" >
+            <li class="item" ng-repeat="element in rateHistory">
+                <p>Дата: {{element._Date}}</p>
+                <p>{{element.Rate}}</p>
+            </li>
+        </ul>
+        </output>
     </ion-content>
 </ion-view>

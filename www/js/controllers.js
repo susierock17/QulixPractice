@@ -100,12 +100,12 @@ angular.module('app.controllers', [])
         }
     })
 
-    .controller('page2Ctrl', function ($scope,$stateParams, rateService) {
+    .controller('page2Ctrl', function ($scope, $stateParams, rateService) {
         $scope.currentDate = new Date();
         $scope.minDate = new Date('2011-03-01');
 
         $scope.data = {
-            choice : null,
+            choice: null,
             inputFirst: null,
             inputSecond: null,
             currencies: [
@@ -118,20 +118,20 @@ angular.module('app.controllers', [])
                     "code": "EUR",
                 },
                 {
-                    "id":190,
+                    "id": 190,
                     "code": "RUB",
                 }
             ]
         }
-        $scope.$watch ('data.choice',function(newValue){
+        $scope.$watch('data.choice', function (newValue) {
             console.log(newValue);
         })
 
-        $scope.$watch ('data.inputFirst',function(newValue){
+        $scope.$watch('data.inputFirst', function (newValue) {
             console.log(newValue);
         })
 
-        $scope.$watch ('data.inputSecond',function(newValue){
+        $scope.$watch('data.inputSecond', function (newValue) {
             console.log(newValue);
         })
 
@@ -139,12 +139,16 @@ angular.module('app.controllers', [])
             $scope.rateHistory = response;
         }
 
-        $scope.getRatesOnPeriod = function(){
-            var startDate = $scope.data.inputFirst.getDate() + '/' + ($scope.data.inputFirst.getMonth()+1) + '/' + $scope.data.inputFirst.getFullYear();
+        $scope.getRatesOnPeriod = function () {
+            if ($scope.data.inputFirst == null || $scope.data.inputSecond == null || $scope.data.choice == null)
+                return;
+            else {
+            var startDate = ($scope.data.inputFirst.getMonth() + 1) + '/' + $scope.data.inputFirst.getDate() + '/' + $scope.data.inputFirst.getFullYear();
             console.log(startDate);
-            var toDate = $scope.data.inputSecond.getDate() + '/' + ($scope.data.inputSecond.getMonth()+1) + '/' + $scope.data.inputSecond.getFullYear();
+            var toDate = ($scope.data.inputSecond.getMonth() + 1) + '/' + $scope.data.inputSecond.getDate() + '/' + $scope.data.inputSecond.getFullYear();
             console.log(toDate);
-            rateService.getRatesOnPeriod(loadRates,$scope.data.choice,startDate,toDate);
+            rateService.getRatesOnPeriod(loadRates, $scope.data.choice, startDate, toDate);
+            }
         }
     })
 
